@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Team_Autism™ reCAPTCHA Verification</title>
+    <!-- Подключаем скрипт Google reCAPTCHA -->
+    <script src="https://google.com" async defer></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .captcha-container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        h2 { color: #1a73e8; margin-bottom: 10px; }
+        p { color: #5f6368; font-size: 14px; margin-bottom: 20px; }
+        .token-box {
+            display: none;
+            margin-top: 20px;
+            padding: 10px;
+            background: #e8f0fe;
+            border: 1px dashed #1a73e8;
+            font-family: monospace;
+            font-size: 16px;
+            color: #1a73e8;
+            font-weight: bold;
+        }
+    </style>
+    <script>
+        // Функция вызывается автоматически при успешном решении капчи
+        function onCaptchaSuccess() {
+            document.getElementById('captcha-widget').style.display = 'none';
+            document.getElementById('desc').innerText = 'Проверка пройдена! Скопируйте код ниже и вставьте в консоль:';
+            
+            // Генерируем шуточный секретный токен для консоли
+            const secretToken = "TEAM-AUTISM-PASSED-" + Math.floor(1000 + Math.random() * 9000);
+            
+            const tokenBox = document.getElementById('token');
+            tokenBox.innerText = secretToken;
+            tokenBox.style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+
+<div class="captcha-container">
+    <h2>Проверка безопасности</h2>
+    <p id="desc">Для продолжения работы с матрицей подтвердите, что вы не робот.</p>
+    
+    <div id="captcha-widget" class="g-recaptcha" 
+         data-sitekey="6LeIxAcTAAAAAJcZVRqy00U7wsA63SS856G646sg" 
+         data-callback="onCaptchaSuccess"></div>
+         <!-- Выше использован официальный тестовый ключ Google. -->
+         <!-- Он всегда возвращает успешную галочку и работает на любом домене/localhost -->
+
+    <div id="token" class="token-box"></div>
+</div>
+
+</body>
+</html>
