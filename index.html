@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Team_Autism™ reCAPTCHA Verification</title>
-    <!-- Подключаем скрипт Google reCAPTCHA -->
+    <!-- Подключаем официальный скрипт Google -->
     <script src="https://google.com" async defer></script>
     <style>
         body {
@@ -37,12 +37,12 @@
         }
     </style>
     <script>
-        // Функция вызывается автоматически при успешном решении капчи
+        // Функция, которая сработает сразу после успешного нажатия на галочку
         function onCaptchaSuccess() {
             document.getElementById('captcha-widget').style.display = 'none';
             document.getElementById('desc').innerText = 'Проверка пройдена! Скопируйте код ниже и вставьте в консоль:';
             
-            // Генерируем шуточный секретный токен для консоли
+            // Генерируем секретный код для консоли C++
             const secretToken = "TEAM-AUTISM-PASSED-" + Math.floor(1000 + Math.random() * 9000);
             
             const tokenBox = document.getElementById('token');
@@ -57,11 +57,10 @@
     <h2>Проверка безопасности</h2>
     <p id="desc">Для продолжения работы с матрицей подтвердите, что вы не робот.</p>
     
+    <!-- Вставьте ваш Ключ Сайта в параметр data-sitekey вместо текста ниже -->
     <div id="captcha-widget" class="g-recaptcha" 
-         data-sitekey="6LeIxAcTAAAAAJcZVRqy00U7wsA63SS856G646sg" 
+         data-sitekey="6Lc3O_EtAAAAACIL68dyHfibeEnNKDul485Agn4n" 
          data-callback="onCaptchaSuccess"></div>
-         <!-- Выше использован официальный тестовый ключ Google. -->
-         <!-- Он всегда возвращает успешную галочку и работает на любом домене/localhost -->
 
     <div id="token" class="token-box"></div>
 </div>
